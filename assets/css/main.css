@@ -151,6 +151,7 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
   background-color: var(--background-color);
+  opacity: 0.97;
 }
 
 .header .topbar {
@@ -211,7 +212,7 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
+  max-height: 50px;
   margin-right: 8px;
 }
 
@@ -883,7 +884,7 @@ section,
   width: 100%;
   min-height: 100vh;
   position: relative;
-  padding: 160px 0 100px 0;
+  padding: 100px 0 100px 0;
   display: flex;
   align-items: center;
   justify-content: center;
