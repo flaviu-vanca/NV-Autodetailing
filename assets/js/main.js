@@ -326,5 +326,3 @@
    * Restul funcțiilor tale originale pentru scroll, preloader etc.
    */
 })();
-
-// Adaugă codul pentru filtrarea imaginilor
