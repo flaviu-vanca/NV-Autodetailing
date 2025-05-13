@@ -210,8 +210,9 @@ document.addEventListener('DOMContentLoaded',() => {
   const form = document.querySelector('form[name="nv-autodetailing-contact-form"]');
 
   if (form) {
-    form.addEventListener('submit',() => {
-      console.log('Form submitted!');
+    form.addEventListener('submit',(event) => {
+
+      form.submit(); // This line ensures the form is submitted to Netlify
     });
   }
 });
