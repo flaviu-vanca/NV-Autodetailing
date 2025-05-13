@@ -212,18 +212,12 @@ document.addEventListener('DOMContentLoaded',() => {
 
   if (form) {
     form.addEventListener('submit',(event) => {
-      event.preventDefault(); // Prevent default form submission
+      // Show the success message
+      if (sentMessage) {
+        sentMessage.style.display = 'block';
+      }
 
-      // Simulate form submission to Netlify
-      setTimeout(() => {
-        // Show the success message
-        if (sentMessage) {
-          sentMessage.style.display = 'block';
-        }
-
-        // Optionally, reset the form
-        form.reset();
-      },500); // Simulate a delay for submission
+      // Allow the form to submit to Netlify
     });
   }
 });
