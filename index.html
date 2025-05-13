@@ -1089,6 +1089,7 @@
               <form
                 method="post"
                 netlify
+                netlify-honeypot="bot-field"
                 name="nv-autodetailing-contact-form"
                 class="php-email-form"
                 action=""
@@ -1101,6 +1102,9 @@
                   name="form-name"
                   value="nv-autodetailing-contact-form"
                 />
+
+                <!-- Honeypot anti-bot field (Netlify recommended) -->
+                <input type="text" name="bot-field" style="display: none;" />
 
                 <div class="row gy-4">
                   <div class="col-md-6">
@@ -1145,7 +1149,10 @@
 
                   <div class="col-md-12 text-center">
                     <div class="loading" style="display: none;">Loading...</div>
-                    <div class="error-message" style="display: none;"></div>
+                    <div
+                      class="error-message text-danger mt-3"
+                      style="display: none;"
+                    ></div>
                     <div class="sent-message" style="display: none;">
                       <p>Mesajul dumneavoastră a fost trimis.</p>
                       <p>Vă mulțumim pentru interesul acordat!</p>
@@ -1304,7 +1311,7 @@
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!--<script src="assets/vendor/php-email-form/validate.js"></script>-->
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
