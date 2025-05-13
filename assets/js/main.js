@@ -203,126 +203,13 @@
 
 })();
 
-(function () {
-  "use strict";
+// Netlify form submission
+document.addEventListener('DOMContentLoaded',() => {
+  const form = document.querySelector('form[name="nv-autodetailing-contact-form"]');
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
-  function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-  }
-
-  document.addEventListener('scroll',toggleScrolled);
-  window.addEventListener('load',toggleScrolled);
-
-  // Adaugă codul pentru filtrarea imaginilor
-  const imagesData = {
-    'curatare-motor': [
-      'curatare-motor-portfolio-1.jpg',
-      'curatare-motor-portfolio-2.jpg',
-      'curatare-motor-portfolio-3.jpg',
-      'curatare-motor-portfolio-4.jpg',
-      'curatare-motor-portfolio-5.jpg',
-      'curatare-motor-portfolio-6.jpg',
-      'curatare-motor-portfolio-7.jpg',
-      'curatare-motor-portfolio-8.jpg',
-      'curatare-motor-portfolio-9.jpg',
-    ],
-    'detailing-interior': [
-      'detailing-interior-portfolio-1.jpg',
-      'detailing-interior-portfolio-2.jpg',
-      'detailing-interior-portfolio-3.jpg',
-      'detailing-interior-portfolio-4.jpg',
-      'detailing-interior-portfolio-5.jpg',
-      'detailing-interior-portfolio-6.jpg',
-      'detailing-interior-portfolio-7.jpg',
-      'detailing-interior-portfolio-8.jpg',
-      'detailing-interior-portfolio-9.jpg',
-    ],
-    'polish-profesional': [
-      'polish-profesional-portfolio-1.jpg',
-      'polish-profesional-portfolio-2.jpg',
-      'polish-profesional-portfolio-3.jpg',
-      'polish-profesional-portfolio-4.jpg',
-      'polish-profesional-portfolio-5.jpg',
-      'polish-profesional-portfolio-6.jpg',
-      'polish-profesional-portfolio-7.jpg',
-      'polish-profesional-portfolio-8.jpg',
-      'polish-profesional-portfolio-9.jpg',
-    ],
-    'protectie-ceramica': [
-      'protectie-ceramica-portfolio-1.jpg',
-      'protectie-ceramica-portfolio-2.jpg',
-      'protectie-ceramica-portfolio-3.jpg',
-      'protectie-ceramica-portfolio-4.jpg',
-      'protectie-ceramica-portfolio-5.jpg',
-      'protectie-ceramica-portfolio-6.jpg',
-      'protectie-ceramica-portfolio-7.jpg',
-      'protectie-ceramica-portfolio-8.jpg',
-      'protectie-ceramica-portfolio-9.jpg',
-    ],
-    'restaurare-faruri': [
-      'restaurare-faruri-portfolio-1.jpg',
-      'restaurare-faruri-portfolio-2.jpg',
-      'restaurare-faruri-portfolio-3.jpg',
-      'restaurare-faruri-portfolio-4.jpg',
-      'restaurare-faruri-portfolio-5.jpg',
-      'restaurare-faruri-portfolio-6.jpg',
-      'restaurare-faruri-portfolio-7.jpg',
-      'restaurare-faruri-portfolio-8.jpg',
-      'restaurare-faruri-portfolio-9.jpg',
-    ],
-    'folie-solara': [
-      'folie-solara-portfolio-1.jpg',
-      'folie-solara-portfolio-2.jpg',
-      'folie-solara-portfolio-3.jpg',
-      'folie-solara-portfolio-4.jpg',
-      'folie-solara-portfolio-5.jpg',
-      'folie-solara-portfolio-6.jpg',
-      'folie-solara-portfolio-7.jpg',
-      'folie-solara-portfolio-8.jpg',
-      'folie-solara-portfolio-9.jpg',
-    ],
-  };
-
-  // Selectăm containerul de imagini din portofoliu
-  const portfolioContainer = document.querySelector('.portfolio-items');
-  const filterButtons = document.querySelectorAll('.filter-button');
-
-  // Funcție care actualizează galeria cu imagini în funcție de categoria selectată
-  function updatePortfolioImages(category) {
-    portfolioContainer.innerHTML = ''; // Curățăm galeria de imagini anterioare
-    const images = imagesData[category]; // Obținem imaginile pentru categoria selectată
-
-    images.forEach((image,index) => {
-      const imageElement = document.createElement('div');
-      imageElement.classList.add('col-lg-4','col-md-6','portfolio-item','isotope-item',`filter-${category}`);
-      imageElement.innerHTML = `
-        <img src="assets/img/${category}/${image}" class="img-fluid" alt="${category} ${index + 1}" />
-        <div class="portfolio-info">
-          <h4>${category} ${index + 1}</h4>
-          <p>Lorem ipsum, dolor sit</p>
-          <a href="assets/img/${category}/${image}" title="${category} ${index + 1}" data-gallery="portfolio-gallery-${category}" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-          <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-        </div>
-      `;
-      portfolioContainer.appendChild(imageElement);
+  if (form) {
+    form.addEventListener('submit',() => {
+      console.log('Form submitted!');
     });
   }
-
-  // Adăugăm evenimentul de clic pe fiecare buton de filtru
-  filterButtons.forEach((button) => {
-    button.addEventListener('click',function () {
-      const filterCategory = this.getAttribute('data-filter');
-      updatePortfolioImages(filterCategory);
-    });
-  });
-
-  /**
-   * Restul funcțiilor tale originale pentru scroll, preloader etc.
-   */
-})();
+});
