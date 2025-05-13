@@ -203,6 +203,9 @@
 
 })();
 
+/**
+  *  Netlify form submission
+  */
 // Netlify form submission
 document.addEventListener('DOMContentLoaded',() => {
   const form = document.querySelector('form[name="nv-autodetailing-contact-form"]');
