@@ -215,15 +215,16 @@ document.addEventListener('DOMContentLoaded',() => {
     const submitButton = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit',async (event) => {
-      event.preventDefault(); // Stop page reload
+      event.preventDefault(); // Evită reîncărcarea paginii
 
-      // Reset messages and show loading
+      // Resetează mesajele și arată spinnerul
       loading.style.display = 'block';
       sentMessage.style.display = 'none';
       errorMessage.style.display = 'none';
       submitButton.disabled = true;
 
       const formData = new FormData(form);
+      formData.append("form-name","nv-autodetailing-contact-form"); // necesar pentru Netlify
 
       try {
         const response = await fetch("/",{
@@ -235,13 +236,26 @@ document.addEventListener('DOMContentLoaded',() => {
         if (response.ok) {
           form.reset();
           sentMessage.style.display = 'block';
+
+          // ✅ ascunde mesajul de succes după 5 secunde
+          setTimeout(() => {
+            sentMessage.style.display = 'none';
+          },5000);
         } else {
           errorMessage.textContent = "Eroare la trimitere. Încercați din nou.";
           errorMessage.style.display = 'block';
+
+          setTimeout(() => {
+            errorMessage.style.display = 'none';
+          },5000);
         }
       } catch (error) {
         errorMessage.textContent = "A apărut o eroare de rețea.";
         errorMessage.style.display = 'block';
+
+        setTimeout(() => {
+          errorMessage.style.display = 'none';
+        },5000);
       } finally {
         loading.style.display = 'none';
         submitButton.disabled = false;
