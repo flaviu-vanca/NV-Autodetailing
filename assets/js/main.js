@@ -208,16 +208,44 @@
   */
 document.addEventListener('DOMContentLoaded',() => {
   const form = document.querySelector('form[name="nv-autodetailing-contact-form"]');
-  const sentMessage = document.querySelector('.sent-message');
-
   if (form) {
-    form.addEventListener('submit',(event) => {
-      // Show the success message
-      if (sentMessage) {
-        sentMessage.style.display = 'block';
-      }
+    const loading = form.querySelector('.loading');
+    const sentMessage = form.querySelector('.sent-message');
+    const errorMessage = form.querySelector('.error-message');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-      // Allow the form to submit to Netlify
+    form.addEventListener('submit',async (event) => {
+      event.preventDefault(); // Stop page reload
+
+      // Reset messages and show loading
+      loading.style.display = 'block';
+      sentMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+      submitButton.disabled = true;
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch("/",{
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        });
+
+        if (response.ok) {
+          form.reset();
+          sentMessage.style.display = 'block';
+        } else {
+          errorMessage.textContent = "Eroare la trimitere. Încercați din nou.";
+          errorMessage.style.display = 'block';
+        }
+      } catch (error) {
+        errorMessage.textContent = "A apărut o eroare de rețea.";
+        errorMessage.style.display = 'block';
+      } finally {
+        loading.style.display = 'none';
+        submitButton.disabled = false;
+      }
     });
   }
 });
