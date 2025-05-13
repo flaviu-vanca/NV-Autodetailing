@@ -208,11 +208,22 @@
   */
 document.addEventListener('DOMContentLoaded',() => {
   const form = document.querySelector('form[name="nv-autodetailing-contact-form"]');
+  const sentMessage = document.querySelector('.sent-message');
 
   if (form) {
     form.addEventListener('submit',(event) => {
+      event.preventDefault(); // Prevent default form submission
 
-      form.submit(); // This line ensures the form is submitted to Netlify
+      // Simulate form submission to Netlify
+      setTimeout(() => {
+        // Show the success message
+        if (sentMessage) {
+          sentMessage.style.display = 'block';
+        }
+
+        // Optionally, reset the form
+        form.reset();
+      },500); // Simulate a delay for submission
     });
   }
 });
