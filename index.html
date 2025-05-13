@@ -1087,12 +1087,20 @@
 
             <div class="col-lg-6">
               <form
-                action="/forms/contact.php"
                 method="post"
+                netlify
+                name="nv-autodetailing-contact-form"
                 class="php-email-form"
                 data-aos="fade-up"
                 data-aos-delay="400"
               >
+                <!-- Câmp ascuns pentru identificarea formularului -->
+                <input
+                  type="hidden"
+                  name="form-name"
+                  value="nv-autodetailing-contact-form"
+                />
+
                 <div class="row gy-4">
                   <div class="col-md-6">
                     <input
@@ -1104,7 +1112,7 @@
                     />
                   </div>
 
-                  <div class="col-md-6 ">
+                  <div class="col-md-6">
                     <input
                       type="email"
                       class="form-control"
@@ -1138,7 +1146,8 @@
                     <div class="loading">Loading</div>
                     <div class="error-message"></div>
                     <div class="sent-message">
-                      Your message has been sent. Thank you!
+                      <p>Mesajul dumneavoastră a fost trimis.</p>
+                      <p>Vă mulțumim pentru interesul acordat!</p>
                     </div>
 
                     <button type="submit">Trimite Mesaj</button>
