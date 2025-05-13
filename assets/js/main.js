@@ -206,13 +206,18 @@
 /**
   *  Netlify form submission
   */
-// Netlify form submission
 document.addEventListener('DOMContentLoaded',() => {
   const form = document.querySelector('form[name="nv-autodetailing-contact-form"]');
 
   if (form) {
-    form.addEventListener('submit',() => {
-      console.log('Form submitted!');
+    form.addEventListener('submit',(event) => {
+      // Uncomment the next line only if you want to debug and prevent the form from submitting
+      // event.preventDefault(); // Prevent default submission for debugging
+
+      console.log('Form submitted!'); // Log a message to confirm the form submission
+
+      // Ensure the form is submitted to Netlify
+      form.submit(); // This line ensures the form is submitted to Netlify
     });
   }
 });
