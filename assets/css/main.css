@@ -954,6 +954,20 @@ section,
   }
 }
 
+.text-warning {
+  color: #ffc107;
+}
+.text-danger {
+  color: #ff0019;
+}
+
+.btn-primary-custom {
+  background-color: #ff0019;
+  color: #fff;
+  border: 2px solid #ff0019;
+}
+
+
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
