@@ -1442,59 +1442,59 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Team Section
+# Reviews Section
 --------------------------------------------------------------*/
-.team .member {
+.reviews .member {
   background-color: var(--surface-color);
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   text-align: center;
   margin-bottom: 20px;
 }
 
-.team .member img {
+.reviews .member img {
   border-radius: 50%;
   max-width: 60%;
   margin: 30px 0;
 }
 
-.team .member .member-content {
+.reviews .member .member-content {
   padding: 0 20px 30px 20px;
 }
 
-.team .member h4 {
+.reviews .member h4 {
   font-weight: 700;
   margin-bottom: 2px;
   font-size: 18px;
 }
 
-.team .member span {
+.reviews .member span {
   font-style: italic;
   display: block;
   font-size: 13px;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
-.team .member p {
+.reviews .member p {
   padding-top: 10px;
   font-size: 14px;
   font-style: italic;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
 
-.team .member .social {
+.reviews .member .social {
   margin-top: 15px;
 }
 
-.team .member .social a {
+.reviews .member .social a {
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   transition: 0.3s;
 }
 
-.team .member .social a:hover {
+.reviews .member .social a:hover {
   color: var(--accent-color);
 }
 
-.team .member .social i {
+.reviews .member .social i {
   font-size: 18px;
   margin: 0 2px;
 }
