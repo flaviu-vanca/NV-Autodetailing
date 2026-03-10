@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/JavaScript-Frontend-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111111" alt="JavaScript badge" />
   <img src="https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap badge" />
   <img src="https://img.shields.io/badge/PHP-Form%20Handlers-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP badge" />
-  <img src="https://img.shields.io/badge/Spring%20Boot-Review%20Service-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot badge" />
 </p>
 
 <p align="center">
