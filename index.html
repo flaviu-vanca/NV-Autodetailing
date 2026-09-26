@@ -36,6 +36,7 @@
     <link href="assets/css/nv.css" rel="stylesheet" />
     <meta name="google-site-verification" content="J0xS7pyp-eguuEcNNxqqDVmdfciD0QoIg8bCW07-aSs" />
     <link rel="preload" as="image" href="assets/img/nv-autodetailing-bg-4.jpg" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -231,22 +232,40 @@
       </section>
 
       <!-- Branduri -->
-      <div class="brands">
+      <section class="brands" aria-label="Produse cu care lucrăm">
         <div class="wrap">
-          <p>Lucrăm cu produse</p>
-          <div class="logos">
-          <img src="assets/img/clients/client-1.png" alt="Global Window Films" loading="lazy" />
-          <img src="assets/img/clients/client-5.png" alt="LLumar" loading="lazy" />
-          <img src="assets/img/clients/client-10.png" alt="XPEL" loading="lazy" />
-          <img src="assets/img/clients/client-3.png" alt="Nanolex" loading="lazy" />
-          <img src="assets/img/clients/client-2.png" alt="Sonax" loading="lazy" />
-          <img src="assets/img/clients/client-4.png" alt="Koch Chemie" loading="lazy" />
-          <img src="assets/img/clients/client-9.png" alt="Menzerna" loading="lazy" />
-          <img src="assets/img/clients/client-7.png" alt="3M" loading="lazy" />
-          <img src="assets/img/clients/client-8.png" alt="Meguiar's" loading="lazy" />
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": { "delay": 3500 },
+                "slidesPerView": "auto",
+                "pagination": { "el": ".swiper-pagination", "type": "bullets", "clickable": true },
+                "breakpoints": {
+                  "320": { "slidesPerView": 2, "spaceBetween": 40 },
+                  "480": { "slidesPerView": 3, "spaceBetween": 60 },
+                  "640": { "slidesPerView": 4, "spaceBetween": 80 },
+                  "992": { "slidesPerView": 6, "spaceBetween": 120 }
+                }
+              }
+            </script>
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide"><img src="assets/img/clients/client-1.png" alt="Global Window Films" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-2.png" alt="Sonax" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-3.png" alt="Nanolex" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-4.png" alt="Koch Chemie" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-5.png" alt="LLumar" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-6.png" alt="Nanolex Approved Detailer" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-7.png" alt="3M" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-8.png" alt="Meguiar's" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-9.png" alt="Menzerna" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-10.png" alt="XPEL" loading="lazy" /></div>
+            </div>
+            <div class="swiper-pagination"></div>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- Portofoliu -->
       <section id="portofoliu">
@@ -404,6 +423,7 @@
     </div>
 
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/nv.js"></script>
     <script>document.querySelectorAll("[data-year]").forEach(function (e) { e.textContent = new Date().getFullYear(); });</script>
   </body>

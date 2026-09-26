@@ -67,6 +67,14 @@
     });
   });
 
+  // Carusel branduri (Swiper)
+  if (typeof Swiper !== "undefined") {
+    document.querySelectorAll(".init-swiper").forEach((el) => {
+      const cfg = el.querySelector(".swiper-config");
+      new Swiper(el, cfg ? JSON.parse(cfg.textContent.trim()) : {});
+    });
+  }
+
   // Lightbox pentru galerii
   let lightbox = null;
   if (typeof GLightbox !== "undefined") {

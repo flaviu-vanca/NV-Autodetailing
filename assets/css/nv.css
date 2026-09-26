@@ -252,13 +252,15 @@ blockquote {
 /*--------------------------------------------------------------
 # Brands
 --------------------------------------------------------------*/
-.brands { padding: 40px 0; background: #f2f0ea; color: #111; }
-.brands .wrap { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; justify-content: space-between; }
-.brands p { margin: 0; color: #6b6861; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 800; }
-.brands .logos { display: flex; gap: 20px 42px; align-items: center; flex-wrap: wrap; flex: 1; justify-content: flex-end; }
-.brands img { height: 34px; width: auto; filter: grayscale(1); opacity: 0.75; transition: 0.3s; }
-.brands img:hover { filter: none; opacity: 1; }
-@media (max-width: 760px) { .brands .logos { justify-content: flex-start; gap: 18px 28px; } .brands img { height: 26px; } }
+.brands { padding: 22px 0 10px; background: #f6f6f6; }
+.brands .swiper { padding: 10px 0 34px; }
+.brands .swiper-wrapper { height: auto; align-items: center; }
+.brands .swiper-slide { display: flex; justify-content: center; }
+.brands .swiper-slide img { transition: 0.3s; max-height: 70px; width: auto; }
+.brands .swiper-slide img:hover { transform: scale(1.1); }
+.brands .swiper-pagination { bottom: 6px; }
+.brands .swiper-pagination-bullet { width: 10px; height: 10px; background: #c9c6bf; opacity: 1; }
+.brands .swiper-pagination-bullet-active { background: var(--gold); }
 
 /*--------------------------------------------------------------
 # Portfolio
