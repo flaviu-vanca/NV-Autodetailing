@@ -91,7 +91,8 @@
       filters.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
       const f = btn.dataset.filter;
       items.forEach((it) => {
-        const show = f === "*" || it.dataset.cat === f;
+        // La „Toate” doar selecția; pe categorie, toate pozele serviciului
+        const show = f === "*" ? !("extra" in it.dataset) : it.dataset.cat === f;
         it.hidden = !show;
         it.classList.toggle("glightbox", show);
       });
