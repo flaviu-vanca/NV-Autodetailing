@@ -477,3 +477,7 @@ blockquote {
 .glightbox-clean .gclose, .glightbox-clean .gnext, .glightbox-clean .gprev { background: rgba(0, 0, 0, 0.45); border-radius: 50%; }
 .glightbox-clean .gclose:hover, .glightbox-clean .gnext:hover, .glightbox-clean .gprev:hover { background: var(--gold); }
 .glightbox-clean .gclose:hover path, .glightbox-clean .gnext:hover g, .glightbox-clean .gprev:hover g { fill: #111; }
+.cta { align-items: center; }
+.map-tall { margin-top: 0; }
+.map-tall iframe { height: 380px; }
+@media (max-width: 900px) { .map-tall iframe { height: 280px; } }
