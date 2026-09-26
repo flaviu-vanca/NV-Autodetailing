@@ -436,3 +436,37 @@ blockquote {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/*--------------------------------------------------------------
+# Lightbox (GLightbox) – stil site
+--------------------------------------------------------------*/
+.goverlay { background: rgba(6, 6, 7, 0.95) !important; }
+.glightbox-mobile .goverlay { background: #060607 !important; }
+.glightbox-clean .gslide-description,
+.glightbox-mobile .glightbox-container .gslide-description {
+  background: var(--bg-2) !important;
+  border-top: 1px solid var(--line);
+}
+.glightbox-mobile .glightbox-container .gslide-description {
+  background: linear-gradient(0deg, rgba(11, 11, 12, 0.96), rgba(11, 11, 12, 0.6) 70%, transparent) !important;
+  border-top: 0;
+}
+.glightbox-clean .gdesc-inner,
+.glightbox-mobile .glightbox-container .gdesc-inner {
+  display: flex; flex-direction: column-reverse; gap: 4px;
+  padding: 16px 20px !important; border-left: 3px solid var(--gold);
+}
+.glightbox-mobile .glightbox-container .gdesc-inner { margin: 0 16px 20px; }
+.glightbox-clean .gslide-title,
+.glightbox-mobile .glightbox-container .gslide-title {
+  font-family: var(--font) !important; color: var(--text) !important;
+  font-size: 17px !important; font-weight: 700 !important; margin: 0 !important;
+}
+.glightbox-clean .gslide-desc,
+.glightbox-mobile .glightbox-container .gslide-desc {
+  font-family: var(--font) !important; color: var(--gold) !important;
+  font-size: 11px !important; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.glightbox-clean .gclose, .glightbox-clean .gnext, .glightbox-clean .gprev { background: rgba(0, 0, 0, 0.45); border-radius: 50%; }
+.glightbox-clean .gclose:hover, .glightbox-clean .gnext:hover, .glightbox-clean .gprev:hover { background: var(--gold); }
+.glightbox-clean .gclose:hover path, .glightbox-clean .gnext:hover g, .glightbox-clean .gprev:hover g { fill: #111; }
