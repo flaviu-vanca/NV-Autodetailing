@@ -139,6 +139,7 @@ body:not(.has-hero) main { padding-top: var(--header-h); }
 }
 .hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero h1 { font-size: clamp(38px, 5vw, 66px); font-weight: 800; max-width: 900px; margin: 22px 0; }
+.hero h1 em { white-space: nowrap; }
 .hero .lead { color: var(--soft); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 .trust {
@@ -292,8 +293,8 @@ blockquote {
 /*--------------------------------------------------------------
 # Reviews
 --------------------------------------------------------------*/
-.reviews { background: var(--bg-2); }
-.reviews-widget { margin-top: 40px; border-radius: var(--radius); overflow: hidden; }
+.reviews { background: var(--bg); }
+.reviews-widget { margin-top: 40px; color-scheme: dark; }
 
 /*--------------------------------------------------------------
 # Contact / CTA
