@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Sample 3 · Pagină serviciu Folie solară | NV Autodetailing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet" />
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0b0c; --bg-2: #131315; --card: #18181b; --line: rgba(255,255,255,0.09);
+      --text: #e9e7e2; --muted: #a09d96; --gold: #e2b33c; --gold-soft: rgba(226,179,60,0.14);
+      --radius: 14px; --max: 1200px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { margin: 0; line-height: 1.12; }
+    em { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: var(--gold); }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    section { padding: 90px 0; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 800; margin-top: 12px; }
+    .muted { color: var(--muted); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: 0.25s; border: 1px solid transparent; white-space: nowrap; }
+    .btn-gold { background: var(--gold); color: #111; }
+    .btn-gold:hover { background: #f0c552; }
+    .btn-ghost { border-color: rgba(255,255,255,0.28); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    header { border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 16px; }
+    .nav img { height: 50px; }
+    .crumbs { font-size: 14px; color: var(--muted); }
+    .crumbs a:hover { color: var(--gold); }
+    @media (max-width: 640px) { .crumbs { display: none; } .nav .btn { padding: 11px 16px; } }
+
+    /* Hero */
+    .hero { padding: 70px 0 80px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .hero h1 { font-size: clamp(36px, 4.8vw, 60px); font-weight: 800; margin: 16px 0 20px; }
+    .hero p { color: #c9c6bf; font-size: 18px; margin: 0; }
+    .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .hero-imgs { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; height: 520px; }
+    .hero-imgs img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+    .hero-imgs .stack { display: grid; gap: 12px; grid-template-rows: 1fr 1fr; min-height: 0; }
+    .hero-imgs .stack img { min-height: 0; }
+    @media (max-width: 560px) { .hero-imgs { height: 380px; } }
+
+    /* Benefits */
+    .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 44px; }
+    @media (max-width: 900px) { .benefits { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .benefits { grid-template-columns: 1fr; } }
+    .benefit { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+    .benefit i { font-size: 24px; color: var(--gold); width: 50px; height: 50px; display: grid; place-items: center; border-radius: 12px; background: var(--gold-soft); }
+    .benefit h3 { font-size: 18px; margin: 18px 0 6px; }
+    .benefit p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+    /* Vehicles */
+    .vehicles { background: var(--bg-2); }
+    .veh-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    @media (max-width: 800px) { .veh-grid { grid-template-columns: 1fr; } }
+    .veh { border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 4/3; }
+    .veh img { width: 100%; height: 100%; object-fit: cover; }
+    .veh span { position: absolute; left: 16px; bottom: 16px; background: rgba(0,0,0,0.72); padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+
+    /* Process timeline */
+    .proc-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; }
+    @media (max-width: 900px) { .proc-grid { grid-template-columns: 1fr; gap: 30px; } }
+    .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 21px; top: 10px; bottom: 10px; width: 1px; background: var(--line); }
+    .timeline li { position: relative; padding: 0 0 34px 70px; }
+    .timeline li b {
+      position: absolute; left: 0; top: 0; width: 43px; height: 43px; border-radius: 50%;
+      display: grid; place-items: center; background: var(--bg); border: 1px solid var(--gold); color: var(--gold); font-weight: 800;
+    }
+    .timeline h3 { font-size: 19px; margin-bottom: 6px; padding-top: 8px; }
+    .timeline p { margin: 0; color: var(--muted); }
+
+    /* Gallery */
+    .gal { columns: 4 220px; column-gap: 12px; margin-top: 40px; }
+    .gal img { width: 100%; margin-bottom: 12px; border-radius: 10px; break-inside: avoid; }
+
+    /* FAQ */
+    details { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; list-style: none; padding: 22px 0; font-weight: 700; font-size: 17px; display: flex; justify-content: space-between; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold); font-size: 24px; line-height: 1; transition: 0.2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { margin: 0 0 22px; color: var(--muted); max-width: 760px; }
+
+    .cta { margin: 20px auto 110px; border-radius: 22px; padding: 56px; text-align: center; background: linear-gradient(120deg, #1d1a12, #121214 60%); border: 1px solid rgba(226,179,60,0.25); }
+    .cta .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    @media (max-width: 600px) { .cta { padding: 36px 22px; } }
+
+    .other { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .other a { padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; font-weight: 600; font-size: 14px; }
+    .other a:hover { border-color: var(--gold); color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="varianta-1-premium.html"><img src="../assets/img/nv-autodetailing.png" alt="NV Autodetailing" /></a>
+      <div class="crumbs"><a href="varianta-1-premium.html">Acasă</a> / <a href="varianta-1-premium.html#servicii">Servicii</a> / <span style="color:var(--text)">Folie solară</span></div>
+      <a class="btn btn-gold" href="tel:+40773724926"><i class="bi bi-telephone"></i> Sună acum</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Folie solară auto</span>
+        <h1>Mai răcoare vara. <em>Mai discret</em> tot anul.</h1>
+        <p>Aplicăm folie solară Global Window Films pe autoturisme, autoutilitare și utilaje agricole. Curățare minuțioasă, croire pe fiecare geam, modelare termică și finisare fără bule.</p>
+        <div class="actions">
+          <a class="btn btn-gold" href="https://wa.me/40773724926" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> Cere ofertă pe WhatsApp</a>
+          <a class="btn btn-ghost" href="#proces">Cum lucrăm</a>
+        </div>
+      </div>
+      <div class="hero-imgs">
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-9.jpg" alt="BMW Seria 7 cu folie solară" />
+        <div class="stack">
+          <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-1.jpeg" alt="Excavator cu folie solară" />
+          <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-11.jpg" alt="Folie solară aplicată" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="eyebrow">Beneficii</span>
+      <h2>De ce merită <em>folia solară</em></h2>
+      <div class="benefits">
+        <div class="benefit"><i class="bi bi-thermometer-sun"></i><h3>Confort termic</h3><p>Habitaclul se încălzește mai puțin în soare, iar clima lucrează mai ușor.</p></div>
+        <div class="benefit"><i class="bi bi-sun"></i><h3>Protecție UV</h3><p>Protejează pasagerii și încetinește decolorarea tapițeriei și a bordului.</p></div>
+        <div class="benefit"><i class="bi bi-eye-slash"></i><h3>Intimitate</h3><p>Bunurile lăsate în mașină nu mai sunt la vedere.</p></div>
+        <div class="benefit"><i class="bi bi-stars"></i><h3>Aspect premium</h3><p>Mașina arată mai unitar și mai elegant, fără efect de „folie lipită”.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vehicles">
+    <div class="wrap">
+      <span class="eyebrow">Nu doar autoturisme</span>
+      <h2>Lucrăm și pe <em>vehicule mari</em></h2>
+      <p class="muted" style="max-width:620px">Pe lângă autoturisme, aplicăm folie pe autoutilitare, excavatoare, tractoare și alte utilaje.</p>
+      <div class="veh-grid">
+        <div class="veh"><img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-13.jpg" alt="" loading="lazy" /><span>Autoturisme</span></div>
+        <div class="veh"><img src="../assets/img/portfolio/detailing-interior/detailing-interior-portfolio-1.jpg" alt="" loading="lazy" /><span>Autoutilitare</span></div>
+        <div class="veh"><img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-1.jpeg" alt="" loading="lazy" /><span>Utilaje agricole & de construcții</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proces">
+    <div class="wrap proc-grid">
+      <div>
+        <span class="eyebrow">Procesul</span>
+        <h2>Cum aplicăm <em>folia</em></h2>
+        <p class="muted">Același proces pentru fiecare mașină, fie că e un Seria 7 sau un excavator.</p>
+      </div>
+      <ol class="timeline">
+        <li><b>1</b><h3>Curățare minuțioasă</h3><p>Geamurile se curăță pe interior și exterior cu lamă specială și soluții degresante, până la o suprafață perfect curată.</p></li>
+        <li><b>2</b><h3>Măsurare și croire</h3><p>Folia se taie după dimensiunea fiecărui geam, cu atenție la colțuri și muchii.</p></li>
+        <li><b>3</b><h3>Modelare termică</h3><p>Cu pistolul cu aer cald, folia se modelează pe curbura exactă a geamului.</p></li>
+        <li><b>4</b><h3>Aplicare fără bule</h3><p>Cu soluție de apă și săpun și o racletă moale, eliminăm toate bulele de aer și excesul de lichid.</p></li>
+        <li style="padding-bottom:0"><b>5</b><h3>Verificare și uscare</h3><p>Verificăm fiecare geam. Folia se usucă complet în 24–48 de ore, în funcție de temperatură.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="eyebrow">Galerie</span>
+      <h2>Lucrări cu <em>folie solară</em></h2>
+      <div class="gal">
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-2.png" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-4.jpg" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-7.jpg" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-15.jpg" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-17.jpg" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-19.jpg" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-21.jpg" alt="" loading="lazy" />
+        <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-6.jpeg" alt="" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="eyebrow">Întrebări frecvente</span>
+      <h2 style="margin-bottom:20px">Ce ne întreabă <em>clienții</em></h2>
+      <details open><summary>Este legală folia solară?</summary><p>Aplicăm folie doar pe geamurile unde legislația din România o permite și vă explicăm înainte de lucrare ce variante aveți.</p></details>
+      <details><summary>Cât durează aplicarea?</summary><p>Pentru un autoturism, de obicei o zi. La autoutilitare și utilaje depinde de numărul și mărimea geamurilor.</p></details>
+      <details><summary>Când pot coborî geamurile?</summary><p>După ce folia se usucă complet: 24–48 de ore, în funcție de temperatură.</p></details>
+      <details><summary>Cât costă?</summary><p>Depinde de vehicul și de numărul de geamuri. Trimiteți-ne marca și modelul pe WhatsApp și primiți un preț clar.</p></details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta">
+      <span class="eyebrow">Programări</span>
+      <h2>Vrei folie solară? <em>Scrie-ne marca și modelul.</em></h2>
+      <p class="muted">Revenim cu preț și o dată disponibilă.</p>
+      <div class="actions">
+        <a class="btn btn-gold" href="https://wa.me/40773724926" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+        <a class="btn btn-ghost" href="tel:+40773724926"><i class="bi bi-telephone"></i> 0773 724 926</a>
+      </div>
+      <div class="other" style="justify-content:center">
+        <span class="muted" style="width:100%;font-size:13px">Alte servicii</span>
+        <a href="../polisare.html">Polish profesional</a><a href="../protectie-ceramica.html">Protecție ceramică</a><a href="../detailing.html">Detailing interior</a><a href="../restaurare-faruri.html">Restaurare faruri</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

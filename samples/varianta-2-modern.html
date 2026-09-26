@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Sample 2 · Modern & Luminos | NV Autodetailing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --white: #ffffff;
+      --ink: #121212;
+      --text: #3b3b3b;
+      --muted: #74726d;
+      --line: #e6e3dd;
+      --red: #cc1616;
+      --red-soft: #fbeaea;
+      --radius: 18px;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { color: var(--ink); margin: 0; letter-spacing: -0.025em; line-height: 1.1; }
+    h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: 800; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+    section { padding: 96px 0; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px;
+      background: var(--red-soft); color: var(--red); font-weight: 700; font-size: 13px;
+    }
+    .sub { color: var(--muted); font-size: 18px; max-width: 580px; margin: 16px 0 0; }
+    .center { text-align: center; } .center .sub { margin-inline: auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 15px 24px; border-radius: 12px; font-weight: 700; font-size: 15px;
+      transition: 0.2s; border: 1px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap;
+    }
+    .btn-red { background: var(--red); color: #fff; box-shadow: 0 10px 24px rgba(204,22,22,0.25); }
+    .btn-red:hover { background: #b01010; transform: translateY(-2px); }
+    .btn-line { border-color: var(--line); background: var(--white); color: var(--ink); }
+    .btn-line:hover { border-color: var(--ink); }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 40; background: rgba(246,245,242,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 20px; }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--ink); }
+    .logo img { height: 44px; width: 44px; object-fit: cover; object-position: left; border-radius: 10px; background: #000; }
+    .nav ul { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; font-weight: 600; font-size: 15px; }
+    .nav ul a:hover { color: var(--red); }
+    .nav .actions { display: flex; gap: 10px; }
+    .nav .btn { padding: 11px 18px; }
+    @media (max-width: 960px) { .nav ul { display: none; } }
+    @media (max-width: 560px) { .nav .btn-line { display: none; } .logo span { display: none; } }
+
+    /* Hero */
+    .hero { padding: 64px 0 90px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+    .hero h1 { font-size: clamp(38px, 5vw, 62px); font-weight: 800; margin: 20px 0 0; }
+    .hero h1 span { color: var(--red); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-meta { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 40px; font-size: 14px; color: var(--muted); }
+    .hero-meta b { display: block; color: var(--ink); font-size: 15px; }
+    .hero-visual { position: relative; }
+    .hero-visual .main { border-radius: 26px; aspect-ratio: 4/4.4; object-fit: cover; width: 100%; }
+    .float {
+      position: absolute; background: var(--white); border-radius: 16px; padding: 14px 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12); display: flex; gap: 12px; align-items: center; font-size: 14px;
+    }
+    .float b { color: var(--ink); display: block; }
+    .float i { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px; background: var(--red-soft); color: var(--red); font-size: 18px; }
+    .float.a { left: -24px; bottom: 40px; }
+    .float.b { right: -16px; top: 30px; }
+    @media (max-width: 600px) { .float.a { left: 10px; } .float.b { right: 10px; } }
+
+    /* Services */
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 50px; }
+    @media (max-width: 960px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .svc-grid { grid-template-columns: 1fr; } }
+    .svc {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column; transition: 0.25s;
+    }
+    .svc:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(0,0,0,0.08); }
+    .svc img { aspect-ratio: 16/10; object-fit: cover; width: 100%; }
+    .svc .b { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+    .svc h3 { font-size: 20px; }
+    .svc p { color: var(--muted); font-size: 15px; margin: 8px 0 18px; }
+    .svc .meta { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 14px; }
+    .svc .price { font-weight: 800; color: var(--ink); }
+    .svc .price small { font-weight: 500; color: var(--muted); }
+    .svc .go { color: var(--red); font-weight: 700; display: inline-flex; gap: 6px; }
+
+    /* Why */
+    .dark { background: #111; color: #cfcfcf; border-radius: 28px; margin: 0 16px; }
+    .dark h2, .dark h3 { color: #fff; }
+    .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 50px; }
+    @media (max-width: 860px) { .why { grid-template-columns: 1fr; } }
+    .why i { font-size: 26px; color: #ff4d4d; }
+    .why h3 { font-size: 20px; margin: 16px 0 8px; }
+    .why p { margin: 0; color: #a9a9a9; }
+
+    /* Reviews placeholder */
+    .reviews-box {
+      margin-top: 44px; border: 2px dashed var(--line); border-radius: var(--radius); padding: 40px;
+      text-align: center; color: var(--muted); background: var(--white);
+    }
+    .stars { color: #f5b301; font-size: 22px; letter-spacing: 3px; }
+
+    /* FAQ */
+    .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; }
+    @media (max-width: 860px) { .faq-grid { grid-template-columns: 1fr; gap: 30px; } }
+    details { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 0 22px; margin-bottom: 12px; }
+    summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--red); transition: 0.2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { margin: 0 0 20px; color: var(--muted); }
+
+    /* Booking */
+    .book { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; background: var(--white); border: 1px solid var(--line); border-radius: 26px; overflow: hidden; }
+    @media (max-width: 900px) { .book { grid-template-columns: 1fr; } }
+    .book .side { position: relative; min-height: 360px; }
+    .book .side img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .book .side .over { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.85), rgba(0,0,0,0.1)); padding: 34px; display: flex; flex-direction: column; justify-content: flex-end; color: #eee; gap: 10px; }
+    .book .side .over a, .book .side .over div { display: flex; gap: 10px; align-items: center; font-weight: 600; }
+    .book form { padding: 40px; display: grid; gap: 14px; }
+    @media (max-width: 520px) { .book form { padding: 24px; } }
+    label { font-size: 13px; font-weight: 700; color: var(--ink); display: grid; gap: 6px; }
+    input, select, textarea { font: inherit; font-size: 15px; padding: 13px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--red); outline-offset: 1px; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 520px) { .two { grid-template-columns: 1fr; } }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips input { display: none; }
+    .chips span { display: inline-block; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); font-weight: 600; font-size: 14px; cursor: pointer; background: var(--bg); }
+    .chips input:checked + span { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    footer { padding: 40px 0 100px; font-size: 14px; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--line); padding-top: 30px; }
+    footer .soc { display: flex; gap: 16px; font-size: 18px; }
+
+    .wa-fab {
+      position: fixed; right: 20px; bottom: 20px; z-index: 50; width: 60px; height: 60px; border-radius: 50%;
+      background: #25d366; color: #fff; display: grid; place-items: center; font-size: 28px;
+      box-shadow: 0 12px 30px rgba(37,211,102,0.45);
+    }
+    .demo-note { font-size: 12px; color: var(--muted); margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#"><img src="../assets/img/nv-autodetailing.png" alt="" /> <span>NV Autodetailing</span></a>
+      <ul>
+        <li><a href="#servicii">Servicii & prețuri</a></li>
+        <li><a href="#de-ce">De ce noi</a></li>
+        <li><a href="#intrebari">Întrebări</a></li>
+        <li><a href="#programare">Contact</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-line" href="tel:+40773724926"><i class="bi bi-telephone"></i> 0773 724 926</a>
+        <a class="btn btn-red" href="#programare">Programează-te</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><i class="bi bi-geo-alt-fill"></i> Gottlob, județul Timiș</span>
+        <h1>Mașina ta, <span>ca nouă</span>. Fără compromisuri.</h1>
+        <p class="sub">Folie solară, polish, protecție ceramică și detailing complet pentru autoturisme, autoutilitare și utilaje agricole. Lucrat manual, de un detailer certificat Nanolex.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#programare">Cere ofertă gratuită <i class="bi bi-arrow-right"></i></a>
+          <a class="btn btn-line" href="#servicii">Vezi serviciile</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>Certificat Nanolex</b>standard internațional</div>
+          <div><b>Global Window Films</b>folii de calitate</div>
+          <div><b>Răspuns rapid</b>telefon & WhatsApp</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img class="main" src="../assets/img/nv-autodetailing-bg-1.jpg" alt="Porsche 959 în atelierul NV Autodetailing" />
+        <div class="float b"><i class="bi bi-stars"></i><div><b>Polish profesional</b>Porsche 959</div></div>
+        <div class="float a"><i class="bi bi-shield-check"></i><div><b>Protecție ceramică</b>luciu care durează</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicii" style="padding-top:20px">
+    <div class="wrap">
+      <div class="center">
+        <span class="pill">Servicii & prețuri</span>
+        <h2 style="margin-top:16px">Alege ce are nevoie mașina ta</h2>
+        <p class="sub">Prețuri orientative. Oferta finală depinde de mărimea și starea mașinii.</p>
+      </div>
+      <div class="svc-grid">
+        <a class="svc" href="../folie-solara.html">
+          <img src="../assets/img/portfolio/folie-solara/folie-solara-portfolio-9.jpg" alt="" loading="lazy" />
+          <div class="b"><h3>Folie solară</h3><p>Confort termic, intimitate și protecție UV. Și pentru autoutilitare și utilaje agricole.</p>
+            <div class="meta"><span class="price"><small>de la</small> ___ lei</span><span class="go">Detalii <i class="bi bi-arrow-right"></i></span></div></div>
+        </a>
+        <a class="svc" href="../polisare.html">
+          <img src="../assets/img/portfolio/polish-profesional/polish-profesional-portfolio-2.jpg" alt="" loading="lazy" />
+          <div class="b"><h3>Polish profesional</h3><p>Eliminăm hologramele și zgârieturile fine. Luciu adânc, ca din fabrică.</p>
+            <div class="meta"><span class="price"><small>de la</small> ___ lei</span><span class="go">Detalii <i class="bi bi-arrow-right"></i></span></div></div>
+        </a>
+        <a class="svc" href="../protectie-ceramica.html">
+          <img src="../assets/img/portfolio/protectie-ceramica/protectie-ceramica-portfolio-3.jpg" alt="" loading="lazy" />
+          <div class="b"><h3>Protecție ceramică</h3><p>Strat hidrofob care protejează vopseaua de UV, murdărie și zgârieturi fine.</p>
+            <div class="meta"><span class="price"><small>de la</small> ___ lei</span><span class="go">Detalii <i class="bi bi-arrow-right"></i></span></div></div>
+        </a>
+        <a class="svc" href="../detailing.html">
+          <img src="../assets/img/portfolio/detailing-interior/detailing-interior-portfolio-1.jpg" alt="" loading="lazy" />
+          <div class="b"><h3>Detailing interior</h3><p>Scaune, bord, mochete și plafon, curățate și igienizate în profunzime.</p>
+            <div class="meta"><span class="price"><small>de la</small> ___ lei</span><span class="go">Detalii <i class="bi bi-arrow-right"></i></span></div></div>
+        </a>
+        <a class="svc" href="../curatare-motor.html">
+          <img src="../assets/img/bmw-bg-2.jpg" alt="" loading="lazy" />
+          <div class="b"><h3>Curățare motor</h3><p>Compartiment motor curat și protejat, ideal înainte de vânzare.</p>
+            <div class="meta"><span class="price"><small>de la</small> ___ lei</span><span class="go">Detalii <i class="bi bi-arrow-right"></i></span></div></div>
+        </a>
+        <a class="svc" href="../restaurare-faruri.html">
+          <img src="../assets/img/portfolio/restaurare-faruri/restaurari-faruri-portfolio-1.jpg" alt="" loading="lazy" />
+          <div class="b"><h3>Restaurare faruri</h3><p>Faruri matuite sau îngălbenite, readuse la claritate. Înainte / după, în poză.</p>
+            <div class="meta"><span class="price"><small>de la</small> ___ lei</span><span class="go">Detalii <i class="bi bi-arrow-right"></i></span></div></div>
+        </a>
+      </div>
+      <p class="demo-note center">Notă sample: „___ lei” sunt locuri pentru prețurile voastre reale.</p>
+    </div>
+  </section>
+
+  <section class="dark" id="de-ce">
+    <div class="wrap">
+      <span class="pill" style="background:rgba(255,77,77,0.12);color:#ff6b6b">De ce NV Autodetailing</span>
+      <h2 style="margin-top:16px;max-width:700px">Am învățat meseria pe mașini de colecție. Tratăm la fel și mașina ta.</h2>
+      <div class="why">
+        <div><i class="bi bi-patch-check"></i><h3>Pregătire la standard internațional</h3><p>Detailer certificat Nanolex, cu traininguri de aplicare folie solară și experiență în Germania.</p></div>
+        <div><i class="bi bi-hand-index-thumb"></i><h3>Totul făcut manual</h3><p>Nu e spălătorie. Fiecare etapă e făcută cu mâna, cu produse profesionale, fără grabă.</p></div>
+        <div><i class="bi bi-truck-front"></i><h3>Și pentru vehicule mari</h3><p>Folie solară pentru autoutilitare, excavatoare și utilaje agricole, nu doar autoturisme.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap center">
+      <span class="pill">Recenzii</span>
+      <h2 style="margin-top:16px">Ce spun clienții</h2>
+      <div class="reviews-box">
+        <div class="stars">★★★★★</div>
+        <p style="margin:12px 0 0">Aici rămâne widgetul Google Reviews existent (Elfsight), cu nota medie afișată mare deasupra.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="intrebari" style="padding-top:0">
+    <div class="wrap faq-grid">
+      <div>
+        <span class="pill">Întrebări frecvente</span>
+        <h2 style="margin-top:16px">Răspunsuri rapide</h2>
+        <p class="sub">Nu găsești ce cauți? Scrie-ne pe WhatsApp.</p>
+      </div>
+      <div>
+        <details open><summary>Cât durează o lucrare?</summary><p>Depinde de serviciu: restaurarea farurilor sau curățarea motorului se fac de obicei în aceeași zi; polish-ul și protecția ceramică pot dura 1–3 zile.</p></details>
+        <details><summary>Folia solară este legală?</summary><p>Aplicăm folie doar pe geamurile unde legislația din România o permite și vă spunem exact ce se poate înainte de lucrare.</p></details>
+        <details><summary>Cât timp nu am voie să cobor geamurile după folie?</summary><p>Folia are nevoie de 24–48 de ore să se usuce complet, în funcție de temperatură. Vă spunem la predare.</p></details>
+        <details><summary>Lucrați și pe autoutilitare sau utilaje agricole?</summary><p>Da. Aplicăm folie solară pe autoutilitare, excavatoare, tractoare și alte utilaje.</p></details>
+        <details><summary>Cum primesc o ofertă?</summary><p>Trimite-ne câteva poze cu mașina pe WhatsApp sau completează formularul de mai jos. Revenim cu un preț clar.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="programare" style="padding-top:0">
+    <div class="wrap">
+      <div class="book">
+        <div class="side">
+          <img src="../assets/img/nv-autodetailing-bg-3.jpg" alt="" loading="lazy" />
+          <div class="over">
+            <h2 style="color:#fff;font-size:30px">Cere o ofertă în 30 de secunde</h2>
+            <a href="tel:+40773724926"><i class="bi bi-telephone"></i> 0773 724 926</a>
+            <a href="https://wa.me/40773724926"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+            <div><i class="bi bi-geo-alt"></i> Str. Zambilelor 18, Gottlob, Timiș</div>
+          </div>
+        </div>
+        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Mulțumim! Te sunăm în curând.';">
+          <label>Ce serviciu te interesează?
+            <div class="chips">
+              <label><input type="checkbox" name="s" /><span>Folie solară</span></label>
+              <label><input type="checkbox" name="s" /><span>Polish</span></label>
+              <label><input type="checkbox" name="s" /><span>Ceramică</span></label>
+              <label><input type="checkbox" name="s" /><span>Interior</span></label>
+              <label><input type="checkbox" name="s" /><span>Motor</span></label>
+              <label><input type="checkbox" name="s" /><span>Faruri</span></label>
+            </div>
+          </label>
+          <div class="two">
+            <label>Nume<input required placeholder="Ion Popescu" /></label>
+            <label>Telefon<input required type="tel" placeholder="07xx xxx xxx" /></label>
+          </div>
+          <label>Mașina<input placeholder="ex. VW Passat 2018, negru" /></label>
+          <label>Mesaj (opțional)<textarea rows="3" placeholder="Ce ai vrea să rezolvăm?"></textarea></label>
+          <button class="btn btn-red" type="submit">Trimite cererea <i class="bi bi-send"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© NV Autodetailing · Str. Zambilelor 18, Gottlob, Timiș</span>
+      <div class="soc">
+        <a href="https://www.facebook.com/profile.php?id=100057466069875" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/n.v_autodetailing/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.tiktok.com/@nvautodetailing" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-fab" href="https://wa.me/40773724926" target="_blank" rel="noopener" aria-label="Scrie-ne pe WhatsApp"><i class="bi bi-whatsapp"></i></a>
+</body>
+</html>
