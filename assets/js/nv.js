@@ -130,7 +130,7 @@
         form.reset();
         show("ok", "Mulțumim! Mesajul a fost trimis, revenim cât de curând.");
       } catch (err) {
-        show("err", "Mesajul nu a putut fi trimis. Sunați-ne la 0773 724 926 sau scrieți-ne pe WhatsApp.");
+        show("err", "Mesajul nu a putut fi trimis. Sună-ne la 0773 724 926 sau scrie-ne pe WhatsApp.");
       } finally {
         button.disabled = false;
         button.innerHTML = label;

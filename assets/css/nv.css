@@ -129,7 +129,7 @@ body:not(.has-hero) main { padding-top: var(--header-h); }
 }
 .hero > img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 60% 30%;
+  object-fit: cover; object-position: 60% 8%;
 }
 .hero::after {
   content: ""; position: absolute; inset: 0;
@@ -139,11 +139,12 @@ body:not(.has-hero) main { padding-top: var(--header-h); }
 }
 .hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero h1 { font-size: clamp(38px, 5vw, 66px); font-weight: 800; max-width: 900px; margin: 22px 0; }
+.hero h1 em { white-space: nowrap; }
 .hero .lead { color: var(--soft); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 .trust {
   display: flex; flex-wrap: wrap; gap: 12px 30px; margin-top: 56px;
-  padding-top: 28px; border-top: 1px solid var(--line); max-width: 820px;
+  padding-top: 28px; border-top: 1px solid var(--line); max-width: 960px;
   font-size: 14px; color: var(--soft);
 }
 .trust span { display: inline-flex; align-items: center; gap: 9px; }
@@ -292,8 +293,8 @@ blockquote {
 /*--------------------------------------------------------------
 # Reviews
 --------------------------------------------------------------*/
-.reviews { background: var(--bg-2); }
-.reviews-widget { margin-top: 40px; border-radius: var(--radius); overflow: hidden; }
+.reviews { background: var(--bg); }
+.reviews-widget { margin-top: 40px; color-scheme: dark; }
 
 /*--------------------------------------------------------------
 # Contact / CTA
@@ -421,6 +422,12 @@ blockquote {
   .mbar .btn { padding: 13px; }
   section { padding: 80px 0; }
   .hero { padding-bottom: 110px; }
+  .hero > img { object-position: 80% 30%; }
+  .hero::after {
+    background:
+      linear-gradient(90deg, rgba(11, 11, 12, 0.88) 0%, rgba(11, 11, 12, 0.55) 70%, rgba(11, 11, 12, 0.35) 100%),
+      linear-gradient(0deg, var(--bg) 0%, transparent 35%);
+  }
   .hero .lead { font-size: 16px; }
   .trust { margin-top: 36px; }
   .site-footer { padding-bottom: 110px; }
@@ -470,3 +477,7 @@ blockquote {
 .glightbox-clean .gclose, .glightbox-clean .gnext, .glightbox-clean .gprev { background: rgba(0, 0, 0, 0.45); border-radius: 50%; }
 .glightbox-clean .gclose:hover, .glightbox-clean .gnext:hover, .glightbox-clean .gprev:hover { background: var(--gold); }
 .glightbox-clean .gclose:hover path, .glightbox-clean .gnext:hover g, .glightbox-clean .gprev:hover g { fill: #111; }
+.cta { align-items: center; }
+.map-tall { margin-top: 0; }
+.map-tall iframe { height: 380px; }
+@media (max-width: 900px) { .map-tall iframe { height: 280px; } }
