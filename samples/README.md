@@ -9,3 +9,5 @@ Pagini statice de exemplu, construite cu pozele reale din `assets/img`. Nu sunt 
 | `pagina-serviciu-folie-solara.html` | Model de pagină de serviciu (în stilul variantei 1): beneficii, tipuri de vehicule, proces pas cu pas, galerie, FAQ, CTA și linkuri către alte servicii. |
 
 Locurile marcate `___ lei` trebuie completate cu prețurile reale. Formularele din samples nu trimit nimic (doar demo).
+
+**Update:** varianta 1 a fost aplicată pe tot site-ul (`index.html`, paginile de serviciu, paginile legale și 404), cu stilul comun în `assets/css/nv.css` și `assets/js/nv.js`. Samples-urile rămân aici doar pentru comparație.
