@@ -261,9 +261,8 @@ blockquote {
 .brands .swiper-wrapper { height: auto; align-items: center; }
 .brands .swiper-slide { display: flex; justify-content: center; }
 .brands .swiper-slide img {
-  max-height: 60px; width: auto;
-  filter: grayscale(1) invert(1) brightness(1.2);
-  opacity: 0.6; transition: opacity 0.3s, transform 0.3s;
+  max-height: 60px; max-width: 150px; width: auto; object-fit: contain;
+  opacity: 0.85; transition: opacity 0.3s, transform 0.3s;
 }
 .brands .swiper-slide img:hover { opacity: 1; transform: scale(1.1); }
 
