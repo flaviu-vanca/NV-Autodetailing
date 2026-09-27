@@ -625,3 +625,100 @@ blockquote {
 @media (prefers-reduced-motion: reduce) {
   .hero .btn-wa-ghost, .hero .btn-wa-ghost i, .hero .btn-wa-ghost::after { animation: none !important; }
 }
+
+/*--------------------------------------------------------------
+# Recenzii Google (widget propriu, aspect ca Elfsight)
+--------------------------------------------------------------*/
+.rv, .rv-modal { --rv-bg: var(--card); --rv-text: var(--text); --rv-muted: var(--muted); --rv-link: var(--gold); --rv-star: #fbbc05;
+  margin-top: 44px; font-family: var(--font); color: var(--rv-text); }
+.rv[hidden] { display: none; }
+.rv-head {
+  background: linear-gradient(120deg, #1d1a12, var(--card) 65%); border: 1px solid rgba(226, 179, 60, 0.3);
+  border-radius: var(--radius); padding: 32px 36px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+}
+.rv-title { display: flex; align-items: center; gap: 10px; font-size: 26px; font-weight: 700; color: var(--rv-text); }
+.rv-title svg { width: 30px; height: 30px; }
+.rv-summary-line { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; font-size: 18px; color: var(--soft); }
+.rv-summary-line strong { font-weight: 800; color: #fff; }
+.rv-head .rv-stars svg { width: 30px; height: 30px; }
+.rv-btn {
+  background: var(--gold); color: #111; border-radius: 999px; padding: 15px 30px;
+  font-weight: 700; font-size: 16px; white-space: nowrap; transition: background 0.2s, transform 0.2s;
+}
+.rv-btn:hover { background: var(--gold-hover); color: #111; transform: translateY(-2px); }
+
+.rv-stars { position: relative; display: inline-block; line-height: 0; vertical-align: middle; }
+.rv-stars svg { width: 24px; height: 24px; margin-right: 2px; }
+.rv-stars-bg svg { fill: rgba(255, 255, 255, 0.15); }
+.rv-stars-fg { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; }
+.rv-stars-fg svg { fill: var(--rv-star); }
+
+.rv-carousel { position: relative; margin-top: 30px; }
+.rv-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 60px) / 3); gap: 30px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none;
+  padding: 0; outline: none;
+}
+.rv-track::-webkit-scrollbar { display: none; }
+@media (max-width: 1100px) { .rv-track { grid-auto-columns: calc((100% - 30px) / 2); } }
+@media (max-width: 680px) { .rv-track { grid-auto-columns: 100%; gap: 16px; } }
+.rv-nav {
+  position: absolute; top: 50%; translate: 0 -50%; z-index: 2; width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid rgba(226, 179, 60, 0.5); background: rgba(11, 11, 12, 0.9); color: var(--gold); font-size: 18px;
+  display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5); transition: 0.25s;
+}
+.rv-nav:hover { background: var(--gold); color: #111; }
+.rv-nav.prev { left: -24px; } .rv-nav.next { right: -24px; }
+@media (max-width: 680px) { .rv-nav { display: none; } }
+
+.rv-card {
+  scroll-snap-align: start; background: var(--rv-bg); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 30px 30px 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  transition: border-color 0.3s;
+}
+.rv-track .rv-card:hover { border-color: rgba(226, 179, 60, 0.45); }
+.rv-card header { display: flex; align-items: center; gap: 18px; }
+.rv-avatar { position: relative; width: 60px; height: 60px; flex: none; }
+.rv-avatar img, .rv-avatar .rv-initial { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.rv-initial { display: grid; place-items: center; color: #fff; font-size: 26px; font-weight: 600; }
+.rv-avatar .rv-g { position: absolute; right: -8px; bottom: -6px; width: 28px; height: 28px; padding: 4px; border-radius: 50%; background: #fff; }
+.rv-name { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 17px; color: var(--rv-text); line-height: 1.25; }
+.rv-name a:hover { color: var(--gold); }
+.rv-name a { color: inherit; }
+.rv-name svg { width: 20px; height: 20px; flex: none; }
+.rv-date { color: var(--rv-muted); font-size: 14px; margin-top: 3px; }
+.rv-card .rv-stars svg { width: 22px; height: 22px; margin-right: 1px; }
+.rv-text {
+  margin: 0; color: var(--soft); font-size: 16px; line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.rv-text:empty { display: none; }
+.rv-more { align-self: flex-start; margin-top: -6px; background: none; border: 0; padding: 0; color: var(--rv-link); font: 700 15px var(--font); cursor: pointer; }
+.rv-more:hover { text-decoration: underline; }
+@media (max-width: 680px) {
+  .rv-head { padding: 26px 22px; }
+  .rv-title { font-size: 22px; }
+  .rv-summary-line { font-size: 16px; }
+  .rv-btn { width: 100%; text-align: center; font-size: 16px; }
+  .rv-card { padding: 26px 24px 28px; }
+  .rv-text { font-size: 15px; }
+}
+
+.rv-dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 26px; min-height: 10px; }
+.rv-dots span { width: 6px; height: 6px; border-radius: 50%; background: #555; opacity: 0.7; transition: 0.25s; }
+.rv-dots span.near { width: 7px; height: 7px; opacity: 0.8; }
+.rv-dots span.on { width: 9px; height: 9px; background: var(--gold); opacity: 1; }
+.rv-dots span.far { display: none; }
+
+.rv-modal {
+  width: min(620px, calc(100% - 32px)); max-height: 86vh; padding: 0; border: 1px solid rgba(226, 179, 60, 0.3); border-radius: 18px;
+  background: var(--bg-2); color: var(--text); font-family: var(--font);
+}
+.rv-modal::backdrop { background: rgba(0, 0, 0, 0.7); }
+.rv-modal .rv-card { background: transparent; border: 0; padding: 40px 36px; }
+.rv-modal .rv-text { display: block; -webkit-line-clamp: unset; }
+.rv-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: #fff; cursor: pointer; display: grid; place-items: center; }
+.rv-close:hover { border-color: var(--gold); color: var(--gold); }
+.rv-reply { border-top: 1px solid var(--line); padding-top: 14px; font-size: 15px; color: var(--muted); }
+.rv-reply strong { display: block; color: var(--gold); margin-bottom: 4px; }
