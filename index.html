@@ -30,7 +30,7 @@
     <!-- Fonts & CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Mulish:wght@400;500;700;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet" />
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
     <link href="assets/css/nv.css" rel="stylesheet" />
@@ -338,29 +338,24 @@
           </div>
 
           <div class="rv" data-reviews hidden>
-            <aside class="rv-summary">
-              <div class="rv-brand"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#g-logo"/></svg> Recenzii Google</div>
-              <div class="rv-score" data-rv-rating></div>
-              <div data-rv-stars></div>
-              <div class="rv-count" data-rv-count></div>
-              <div class="rv-actions">
-                <a class="btn btn-gold" data-rv-maps href="https://www.google.com/maps/search/?api=1&amp;query=NV+AutoDetailing+Gottlob" target="_blank" rel="noopener"><i class="bi bi-pencil-square"></i> Scrie o recenzie</a>
-                <button class="btn btn-ghost" type="button" data-rv-all>Vezi toate recenziile</button>
+            <div class="rv-head">
+              <div>
+                <div class="rv-title"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#g-logo"/></svg> <span data-rv-label>Excelent</span> pe Google</div>
+                <div class="rv-summary-line"><span data-rv-stars></span> <strong data-rv-rating></strong> <span data-rv-count></span></div>
               </div>
-            </aside>
+              <a class="rv-btn" data-rv-maps href="https://www.google.com/maps/search/?api=1&amp;query=NV+AutoDetailing+Gottlob" target="_blank" rel="noopener">Evaluează-ne pe Google</a>
+            </div>
             <div class="rv-carousel">
               <button class="rv-nav prev" type="button" data-rv-prev aria-label="Recenzia anterioară"><i class="bi bi-chevron-left"></i></button>
               <div class="rv-track" tabindex="0" aria-label="Recenzii Google"></div>
               <button class="rv-nav next" type="button" data-rv-next aria-label="Recenzia următoare"><i class="bi bi-chevron-right"></i></button>
             </div>
+            <div class="rv-dots" aria-hidden="true"></div>
           </div>
 
-          <dialog class="rv-modal" id="rv-modal" aria-label="Toate recenziile">
-            <div class="rv-modal-head">
-              <h3>Toate recenziile Google</h3>
-              <button class="nav-toggle" style="display:inline-flex" type="button" data-rv-close aria-label="Închide"><i class="bi bi-x-lg"></i></button>
-            </div>
-            <div class="rv-list"></div>
+          <dialog class="rv-modal" id="rv-modal" aria-label="Recenzie">
+            <button class="rv-close" type="button" data-rv-close aria-label="Închide"><i class="bi bi-x-lg"></i></button>
+            <div class="rv-modal-body"></div>
           </dialog>
 
           <!-- Rezervă: widgetul Elfsight se încarcă doar dacă recenziile nu pot fi citite -->
