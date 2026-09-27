@@ -21,7 +21,7 @@
     return `<span class="rv-stars" aria-label="${String(value).replace(".", ",")} din 5 stele"><span class="rv-stars-bg">${row}</span><span class="rv-stars-fg" style="width:${pct}%">${row}</span></span>`;
   };
   const verified =
-    '<svg viewBox="0 0 24 24" aria-label="Verificat"><path fill="#1a5bc4" d="M12 1l2.6 1.9 3.2-.2 1 3.1 2.7 1.8-.9 3.1.9 3.1-2.7 1.8-1 3.1-3.2-.2L12 23l-2.6-1.9-3.2.2-1-3.1-2.7-1.8.9-3.1-.9-3.1 2.7-1.8 1-3.1 3.2.2z"/><path fill="#fff" d="M10.6 15.6l-3.2-3.2 1.4-1.4 1.8 1.8 4.6-4.6 1.4 1.4z"/></svg>';
+    '<svg viewBox="0 0 24 24" aria-label="Verificat"><path fill="#e2b33c" d="M12 1l2.6 1.9 3.2-.2 1 3.1 2.7 1.8-.9 3.1.9 3.1-2.7 1.8-1 3.1-3.2-.2L12 23l-2.6-1.9-3.2.2-1-3.1-2.7-1.8.9-3.1-.9-3.1 2.7-1.8 1-3.1 3.2.2z"/><path fill="#111" d="M10.6 15.6l-3.2-3.2 1.4-1.4 1.8 1.8 4.6-4.6 1.4 1.4z"/></svg>';
   const gBadge = '<svg class="rv-g" viewBox="0 0 48 48" aria-hidden="true"><use href="#g-logo"/></svg>';
 
   // În română: „14 recenzii”, dar „39 de recenzii” (de la 20 în sus)
