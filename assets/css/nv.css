@@ -481,3 +481,72 @@ blockquote {
 .map-tall { margin-top: 0; }
 .map-tall iframe { height: 380px; }
 @media (max-width: 900px) { .map-tall iframe { height: 280px; } }
+
+/*--------------------------------------------------------------
+# Animații („site viu”)
+--------------------------------------------------------------*/
+/* Bară subțire aurie care arată cât ai derulat din pagină */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 100%; z-index: 90;
+  background: linear-gradient(90deg, var(--gold), #f6d77a);
+  transform-origin: 0 50%; transform: scaleX(0); pointer-events: none;
+}
+
+/* Hero: fundalul intră cu un zoom lent și se mișcă ușor la derulare */
+.hero > img { animation: hero-zoom 14s cubic-bezier(0.2, 0.6, 0.2, 1) both; will-change: scale, translate; }
+@keyframes hero-zoom { from { scale: 1.12; } to { scale: 1; } }
+
+/* Hero: textul apare pe rând la încărcare */
+.hero .wrap > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero .wrap > :nth-child(1) { animation-delay: 0.15s; }
+.hero .wrap > :nth-child(2) { animation-delay: 0.3s; }
+.hero .wrap > :nth-child(3) { animation-delay: 0.45s; }
+.hero .wrap > :nth-child(4) { animation-delay: 0.6s; }
+.hero .wrap > :nth-child(5) { animation-delay: 0.75s; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+/* Reflexie aurie care trece peste „ca pe a noastră”, ca lumina pe o vopsea lustruită */
+.hero h1 em {
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold) 40%, #fff3c4 50%, var(--gold) 60%, var(--gold) 100%);
+  background-size: 250% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: sheen-text 7s ease-in-out 1.4s infinite;
+  padding-right: 0.06em; margin-right: -0.06em;
+}
+@keyframes sheen-text { 0% { background-position: 100% 0; } 25%, 100% { background-position: 0 0; } }
+
+/* Reflexie pe butoanele aurii */
+.btn-gold { position: relative; overflow: hidden; isolation: isolate; }
+.btn-gold::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; z-index: -1;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg); transition: left 0.6s ease;
+}
+.btn-gold:hover::after { left: 120%; }
+.hero .btn-gold::after { animation: sheen-btn 6s ease-in-out 2.2s infinite; }
+@keyframes sheen-btn { 0% { left: -60%; } 18%, 100% { left: 120%; } }
+
+/* Linie aurie sub linkurile din meniu */
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.3s ease;
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* Cardurile de servicii se ridică ușor și primesc o margine aurie */
+.svc { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+.svc:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(226, 179, 60, 0.45); }
+.svc .more i { transition: transform 0.3s ease; }
+.svc:hover .more i { transform: translateX(5px); }
+
+/* Pozele din galerie apar pe rând */
+.gallery a { animation: none; }
+.gallery.in-view a:not([hidden]) { animation: pop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 60ms); }
+@keyframes pop { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero > img, .hero .wrap > *, .hero h1 em, .hero .btn-gold::after, .gallery.in-view a:not([hidden]) { animation: none !important; }
+  .hero h1 em { color: var(--gold); background: none; }
+  .scroll-progress { display: none; }
+}

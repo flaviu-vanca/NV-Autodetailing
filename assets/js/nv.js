@@ -45,6 +45,49 @@
     reveals.forEach((el) => el.classList.add("in"));
   }
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Elementele dintr-o grilă apar pe rând, nu toate deodată
+  document.querySelectorAll(".services-grid, .steps, .benefits").forEach((grid) => {
+    grid.querySelectorAll(":scope > .reveal").forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i, 6) * 90 + "ms";
+    });
+  });
+
+  // Bara de progres a derulării și mișcarea ușoară a fundalului din hero
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  document.body.appendChild(bar);
+  const heroImg = document.querySelector(".hero > img");
+  let ticking = false;
+  const onScrollFx = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
+    if (heroImg && !reduceMotion && window.scrollY < window.innerHeight * 1.2) {
+      heroImg.style.translate = "0 " + window.scrollY * 0.25 + "px";
+    }
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScrollFx); }
+  }, { passive: true });
+  onScrollFx();
+
+  // Galeria: pozele apar pe rând când ajungi la ea
+  const gallery = document.querySelector(".gallery");
+  const staggerGallery = () => {
+    if (!gallery) return;
+    gallery.querySelectorAll("a:not([hidden])").forEach((a, i) => a.style.setProperty("--i", Math.min(i, 12)));
+  };
+  if (gallery && "IntersectionObserver" in window) {
+    staggerGallery();
+    new IntersectionObserver((entries, obs) => {
+      if (entries[0].isIntersecting) { gallery.classList.add("in-view"); obs.disconnect(); }
+    }, { threshold: 0.08 }).observe(gallery);
+  } else if (gallery) {
+    gallery.classList.add("in-view");
+  }
+
   // Slider înainte / după
   document.querySelectorAll(".compare").forEach((cmp) => {
     const move = (x) => {
@@ -53,7 +96,28 @@
       cmp.style.setProperty("--pos", p + "%");
     };
     let drag = false;
+    let touched = false;
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      new IntersectionObserver((entries, obs) => {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        const frames = [50, 32, 68, 50];
+        const start = performance.now() + 400;
+        const dur = 1800;
+        const step = (now) => {
+          if (touched) return;
+          const t = Math.min(1, Math.max(0, (now - start) / dur));
+          const seg = Math.min(frames.length - 2, Math.floor(t * (frames.length - 1)));
+          const local = t * (frames.length - 1) - seg;
+          const ease = 0.5 - Math.cos(local * Math.PI) / 2;
+          cmp.style.setProperty("--pos", frames[seg] + (frames[seg + 1] - frames[seg]) * ease + "%");
+          if (t < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }, { threshold: 0.5 }).observe(cmp);
+    }
     cmp.addEventListener("pointerdown", (e) => {
+      touched = true;
       drag = true;
       cmp.setPointerCapture(e.pointerId);
       move(e.clientX);
@@ -97,6 +161,13 @@
         it.classList.toggle("glightbox", show);
       });
       if (lightbox) lightbox.reload();
+      const g = document.querySelector(".gallery");
+      if (g) {
+        g.classList.remove("in-view");
+        g.querySelectorAll("a:not([hidden])").forEach((a, i) => a.style.setProperty("--i", Math.min(i, 12)));
+        void g.offsetWidth;
+        g.classList.add("in-view");
+      }
     });
   }
 
