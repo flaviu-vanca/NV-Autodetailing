@@ -602,3 +602,26 @@ blockquote {
 @media (prefers-reduced-motion: reduce) {
   .mbar, .mbar .btn::after, .mbar .btn i { animation: none !important; }
 }
+
+/* Butonul „Scrie-ne pe WhatsApp” din hero: contur verde care pulsează alternativ cu butonul auriu */
+.btn-wa-ghost { position: relative; overflow: hidden; isolation: isolate; border-color: rgba(37, 211, 102, 0.55); }
+.btn-wa-ghost i { color: #25d366; display: inline-block; transition: color 0.25s; }
+.btn-wa-ghost:hover { background: #25d366; border-color: #25d366; color: #0b2715; }
+.btn-wa-ghost:hover i { color: #0b2715; }
+.btn-wa-ghost::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; z-index: -1;
+  background: linear-gradient(100deg, transparent, rgba(37, 211, 102, 0.45), transparent);
+  transform: skewX(-20deg);
+}
+.hero .btn-wa-ghost {
+  animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both, glow-wa 2.4s ease-in-out 3.2s infinite;
+}
+.hero .btn-wa-ghost i { animation: beat 2.4s ease-in-out 3.2s infinite; }
+.hero .btn-wa-ghost::after { animation: sheen-btn 3.5s ease-in-out 3.55s infinite; }
+@keyframes glow-wa {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  50% { box-shadow: 0 0 0 8px rgba(37, 211, 102, 0.14), 0 0 26px rgba(37, 211, 102, 0.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .btn-wa-ghost, .hero .btn-wa-ghost i, .hero .btn-wa-ghost::after { animation: none !important; }
+}
