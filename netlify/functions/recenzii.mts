@@ -11,6 +11,12 @@
 const DEFAULT_DATA_ID = "0x47451d38c4c5f611:0xb6cd54459a8589ff";
 const MAX_PAGES = 15;
 
+// Filtre opționale, DEZACTIVATE. Pentru a le folosi, scoate „//” din fața liniilor marcate FILTRU.
+// Filtrele care opresc citirea mai devreme economisesc căutări SerpApi.
+// FILTRU const MAX_AGE_DAYS = 365; // nu afișa recenziile mai vechi de un an
+// FILTRU const MIN_REVIEWS = 10;   // dar păstrează cel puțin cele mai noi 10
+// FILTRU const MAX_REVIEWS = 28;   // limită fixă de recenzii (28 = 2 căutări)
+
 type Review = {
   name: string;
   photo: string | null;
@@ -74,6 +80,12 @@ export default async () => {
         });
       }
 
+      // Oprește citirea când recenziile devin prea vechi sau s-a atins limita:
+      // FILTRU const cutoff = Date.now() - MAX_AGE_DAYS * 86400000;
+      // FILTRU const oldest = reviews[reviews.length - 1];
+      // FILTRU if (reviews.length >= MIN_REVIEWS && oldest?.date && Date.parse(oldest.date) < cutoff) break;
+      // FILTRU if (reviews.length >= MAX_REVIEWS) break;
+
       nextPageToken = data.serpapi_pagination?.next_page_token;
       if (!nextPageToken) break;
     }
@@ -81,6 +93,10 @@ export default async () => {
     console.error("Recenzii: nu am putut citi datele", err);
     return json({ configured: true, error: true }, 502, 300);
   }
+
+  // Păstrează doar recenziile din intervalul ales (cele mai noi MIN_REVIEWS rămân mereu):
+  // FILTRU const cutoffShown = Date.now() - MAX_AGE_DAYS * 86400000;
+  // FILTRU reviews.splice(0, reviews.length, ...reviews.filter((r, i) => i < MIN_REVIEWS || !r.date || Date.parse(r.date) >= cutoffShown).slice(0, MAX_REVIEWS));
 
   return json(
     {
