@@ -436,7 +436,7 @@ blockquote {
 /*--------------------------------------------------------------
 # Reveal on scroll
 --------------------------------------------------------------*/
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.reveal { opacity: 0; transform: translateY(60px) scale(0.97); transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .reveal.in { opacity: 1; transform: none; }
 .no-js .reveal { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -487,44 +487,47 @@ blockquote {
 --------------------------------------------------------------*/
 /* Bară subțire aurie care arată cât ai derulat din pagină */
 .scroll-progress {
-  position: fixed; top: 0; left: 0; height: 2px; width: 100%; z-index: 90;
+  position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 90; box-shadow: 0 0 12px rgba(226, 179, 60, 0.8);
   background: linear-gradient(90deg, var(--gold), #f6d77a);
   transform-origin: 0 50%; transform: scaleX(0); pointer-events: none;
 }
 
 /* Hero: fundalul intră cu un zoom lent și se mișcă ușor la derulare */
-.hero > img { animation: hero-zoom 14s cubic-bezier(0.2, 0.6, 0.2, 1) both; will-change: scale, translate; }
-@keyframes hero-zoom { from { scale: 1.12; } to { scale: 1; } }
+.hero > img { animation: hero-zoom 7s cubic-bezier(0.2, 0.6, 0.2, 1) both, hero-breathe 16s ease-in-out 7s infinite alternate; will-change: scale, translate; }
+@keyframes hero-zoom { from { scale: 1.3; } to { scale: 1; } }
+@keyframes hero-breathe { from { scale: 1; } to { scale: 1.08; } }
 
 /* Hero: textul apare pe rând la încărcare */
-.hero .wrap > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero .wrap > * { animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .hero .wrap > :nth-child(1) { animation-delay: 0.15s; }
 .hero .wrap > :nth-child(2) { animation-delay: 0.3s; }
 .hero .wrap > :nth-child(3) { animation-delay: 0.45s; }
 .hero .wrap > :nth-child(4) { animation-delay: 0.6s; }
 .hero .wrap > :nth-child(5) { animation-delay: 0.75s; }
-@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(60px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
 
 /* Reflexie aurie care trece peste „ca pe a noastră”, ca lumina pe o vopsea lustruită */
 .hero h1 em {
-  background: linear-gradient(100deg, var(--gold) 0%, var(--gold) 40%, #fff3c4 50%, var(--gold) 60%, var(--gold) 100%);
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold) 35%, #ffffff 48%, #fff6d6 52%, var(--gold) 65%, var(--gold) 100%);
   background-size: 250% 100%; background-position: 100% 0;
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: sheen-text 7s ease-in-out 1.4s infinite;
+  animation: sheen-text 4s ease-in-out 1.2s infinite;
   padding-right: 0.06em; margin-right: -0.06em;
 }
-@keyframes sheen-text { 0% { background-position: 100% 0; } 25%, 100% { background-position: 0 0; } }
+@keyframes sheen-text { 0% { background-position: 100% 0; } 40%, 100% { background-position: 0 0; } }
 
 /* Reflexie pe butoanele aurii */
 .btn-gold { position: relative; overflow: hidden; isolation: isolate; }
 .btn-gold::after {
   content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; z-index: -1;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.85), transparent);
   transform: skewX(-20deg); transition: left 0.6s ease;
 }
 .btn-gold:hover::after { left: 120%; }
-.hero .btn-gold::after { animation: sheen-btn 6s ease-in-out 2.2s infinite; }
-@keyframes sheen-btn { 0% { left: -60%; } 18%, 100% { left: 120%; } }
+.hero .btn-gold::after { animation: sheen-btn 3.5s ease-in-out 1.8s infinite; }
+@keyframes sheen-btn { 0% { left: -60%; } 30%, 100% { left: 120%; } }
+.hero .btn-gold { animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both, glow 2.4s ease-in-out 2s infinite; }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(226, 179, 60, 0); } 50% { box-shadow: 0 0 0 10px rgba(226, 179, 60, 0.18), 0 0 30px rgba(226, 179, 60, 0.55); } }
 
 /* Linie aurie sub linkurile din meniu */
 .nav-links a { position: relative; }
@@ -536,17 +539,33 @@ blockquote {
 
 /* Cardurile de servicii se ridică ușor și primesc o margine aurie */
 .svc { transition: transform 0.4s ease, box-shadow 0.4s ease; }
-.svc:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(226, 179, 60, 0.45); }
+.svc:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(226, 179, 60, 0.7), 0 0 40px rgba(226, 179, 60, 0.25); }
+.svc:hover img { transform: scale(1.12); }
 .svc .more i { transition: transform 0.3s ease; }
 .svc:hover .more i { transform: translateX(5px); }
 
 /* Pozele din galerie apar pe rând */
 .gallery a { animation: none; }
-.gallery.in-view a:not([hidden]) { animation: pop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 60ms); }
-@keyframes pop { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+.gallery.in-view a:not([hidden]) { animation: pop 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 80ms); }
+@keyframes pop { from { opacity: 0; transform: translateY(40px) scale(0.85); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero > img, .hero .wrap > *, .hero h1 em, .hero .btn-gold::after, .gallery.in-view a:not([hidden]) { animation: none !important; }
+  .hero > img, .hero .wrap > *, .hero h1 em, .hero .btn-gold, .hero .btn-gold::after, .gallery.in-view a:not([hidden]), .scroll-cue, .reveal.in .eyebrow::before { animation: none !important; }
   .hero h1 em { color: var(--gold); background: none; }
   .scroll-progress { display: none; }
 }
+
+/* Linia aurie din fața titlurilor mici se „desenează” când apare secțiunea */
+.reveal .eyebrow::before { width: 0; transition: width 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s; }
+.reveal.in .eyebrow::before { width: 28px; }
+
+/* Săgeată care pulsează jos în hero, îndemn să derulezi */
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 28px; z-index: 3; translate: -50% 0;
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid rgba(226, 179, 60, 0.6); color: var(--gold); font-size: 20px;
+  animation: cue 2s ease-in-out 2.5s infinite both;
+}
+.scroll-cue:hover { background: var(--gold); color: #111; }
+@keyframes cue { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(10px); opacity: 1; } }
+@media (max-width: 760px) { .scroll-cue { display: none; } }

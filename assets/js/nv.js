@@ -64,7 +64,7 @@
     const max = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
     if (heroImg && !reduceMotion && window.scrollY < window.innerHeight * 1.2) {
-      heroImg.style.translate = "0 " + window.scrollY * 0.25 + "px";
+      heroImg.style.translate = "0 " + window.scrollY * 0.4 + "px";
     }
     ticking = false;
   };
@@ -101,9 +101,9 @@
       new IntersectionObserver((entries, obs) => {
         if (!entries[0].isIntersecting) return;
         obs.disconnect();
-        const frames = [50, 32, 68, 50];
+        const frames = [50, 22, 78, 35, 50];
         const start = performance.now() + 400;
-        const dur = 1800;
+        const dur = 2600;
         const step = (now) => {
           if (touched) return;
           const t = Math.min(1, Math.max(0, (now - start) / dur));
