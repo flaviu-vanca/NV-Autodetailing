@@ -94,7 +94,10 @@
     root.querySelectorAll("[data-rv-maps]").forEach((a) => (a.href = data.mapsUrl));
 
     const track = root.querySelector(".rv-track");
-    track.innerHTML = list.map((r, i) => card(r, i, false)).join("");
+    // Cardurile apar de două ori, ca derularea să continue fără salt vizibil după ultima recenzie
+    const once = list.map((r, i) => card(r, i, false)).join("");
+    track.innerHTML = once + (list.length > 1 ? once : "");
+    [...track.children].slice(list.length).forEach((c) => c.setAttribute("aria-hidden", "true"));
     root.hidden = false;
 
     // „Citește mai mult” apare doar la textele tăiate și deschide recenzia întreagă
@@ -116,37 +119,75 @@
     modal.querySelector("[data-rv-close]").addEventListener("click", () => modal.close());
     modal.addEventListener("click", (e) => e.target === modal && modal.close());
 
-    // Carusel: săgeți, glisare și puncte de navigare
-    const perView = () => {
-      const c = track.querySelector(".rv-card");
-      return c ? Math.max(1, Math.round(track.clientWidth / (c.getBoundingClientRect().width + 20))) : 1;
-    };
+    // Carusel fără sfârșit: se mișcă singur de la dreapta spre stânga
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const step = () => {
       const c = track.querySelector(".rv-card");
       return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : 320;
     };
+    const setWidth = () => step() * list.length;
+    const jump = (left) => {
+      track.style.scrollBehavior = "auto";
+      track.style.scrollSnapType = "none";
+      track.scrollLeft = left;
+      void track.offsetWidth;
+      track.style.scrollBehavior = "";
+      track.style.scrollSnapType = "";
+    };
+    // Când am ajuns în setul dublat, revenim instant în primul set (arată identic)
+    const wrap = () => {
+      if (list.length < 2) return;
+      const w = setWidth();
+      if (track.scrollLeft >= w - 2) jump(track.scrollLeft - w);
+    };
     const go = (dir) => {
-      const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-      if (dir > 0 && end) track.scrollTo({ left: 0 });
-      else if (dir < 0 && track.scrollLeft <= 4) track.scrollTo({ left: track.scrollWidth });
-      else track.scrollBy({ left: dir * step() });
+      if (list.length < 2) return;
+      if (dir < 0 && track.scrollLeft < step() / 2) jump(track.scrollLeft + setWidth());
+      track.scrollBy({ left: dir * step() });
     };
     root.querySelector("[data-rv-prev]").addEventListener("click", () => go(-1));
     root.querySelector("[data-rv-next]").addEventListener("click", () => go(1));
 
+    let settle;
+    track.addEventListener(
+      "scroll",
+      () => {
+        requestAnimationFrame(updateDots);
+        clearTimeout(settle);
+        settle = setTimeout(wrap, 160);
+      },
+      { passive: true }
+    );
+
     const dots = root.querySelector(".rv-dots");
-    const updateDots = () => {
-      const pages = Math.max(1, list.length - perView() + 1);
+    function updateDots() {
+      const pages = list.length;
       if (dots.childElementCount !== pages) dots.innerHTML = "<span></span>".repeat(pages);
-      const active = Math.min(pages - 1, Math.round(track.scrollLeft / step()));
+      const active = Math.round(track.scrollLeft / step()) % pages;
       [...dots.children].forEach((d, i) => {
-        const dist = Math.abs(i - active);
+        const dist = Math.min(Math.abs(i - active), pages - Math.abs(i - active));
         d.className = dist === 0 ? "on" : dist === 1 ? "near" : dist > 2 ? "far" : "";
       });
-    };
-    track.addEventListener("scroll", () => requestAnimationFrame(updateDots), { passive: true });
+    }
     window.addEventListener("resize", updateDots);
     updateDots();
+
+    // Derulare automată; se oprește cât timp vizitatorul ține mouse-ul pe carusel sau îl atinge
+    if (!reduceMotion && list.length > 1) {
+      let pausedUntil = 0;
+      let hover = false;
+      track.addEventListener("mouseenter", () => (hover = true));
+      track.addEventListener("mouseleave", () => (hover = false));
+      ["touchstart", "pointerdown", "wheel"].forEach((ev) =>
+        track.addEventListener(ev, () => (pausedUntil = Date.now() + 6000), { passive: true })
+      );
+      root.querySelectorAll(".rv-nav").forEach((b) => b.addEventListener("click", () => (pausedUntil = Date.now() + 6000)));
+      setInterval(() => {
+        const r = track.getBoundingClientRect();
+        const visible = r.top < window.innerHeight && r.bottom > 0;
+        if (!hover && !document.hidden && visible && !modal.open && Date.now() > pausedUntil) go(1);
+      }, 4000);
+    }
   };
 
   fetch("/api/recenzii", { headers: { Accept: "application/json" } })
